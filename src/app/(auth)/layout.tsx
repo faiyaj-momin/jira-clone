@@ -1,9 +1,9 @@
-"use client";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import React from "react";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
+'use client';
+import { Button } from '@/components/ui/button';
+import Image from 'next/image';
+import React from 'react';
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 
 interface AuthLayoutProps {
   children: React.ReactNode;
@@ -17,8 +17,8 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
           <Image src="/logo.svg" alt="logo" width={152} height={56} />
           <div className="flex items-center gap-2">
             <Button asChild variant="secondary">
-              <Link href={pathname === "/sign-in" ? "/sign-up" : "/sign-in"}>
-                {pathname === "/sign-in" ? "Sign In" : "Login"}
+              <Link href={pathname === '/sign-in' ? '/sign-up' : '/sign-in'}>
+                {pathname === '/sign-in' ? 'Sign In' : 'Login'}
               </Link>
             </Button>
           </div>

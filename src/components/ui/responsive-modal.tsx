@@ -1,9 +1,9 @@
-"use client";
-import { useMedia } from "react-use";
+'use client';
+import { useMedia } from 'react-use';
 
-import { Dialog, DialogContent } from "./dialog";
+import { Dialog, DialogContent } from './dialog';
 
-import { Drawer, DrawerContent } from "./drawer";
+import { Drawer, DrawerContent } from './drawer';
 
 interface ResponsiveModalProps {
   open: boolean;
@@ -16,7 +16,7 @@ export const ResponsiveModal = ({
   onOpenChange,
   children,
 }: ResponsiveModalProps) => {
-  const isDesktop = useMedia("(min-width: 1024px)", true);
+  const isDesktop = useMedia('(min-width: 1024px)', true);
 
   if (isDesktop) {
     return (

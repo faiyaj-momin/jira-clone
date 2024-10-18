@@ -1,8 +1,8 @@
-import { getCurrent } from "@/features/auth/queries";
-import { getWrokspace } from "@/features/workspaces/queries";
-import { EditWorkspaceForm } from "@/features/workspaces/components/edit-workspace-form copy";
-import { redirect } from "next/navigation";
-import React from "react";
+import { getCurrent } from '@/features/auth/queries';
+import { getWrokspace } from '@/features/workspaces/queries';
+import { EditWorkspaceForm } from '@/features/workspaces/components/edit-workspace-form copy';
+import { redirect } from 'next/navigation';
+import React from 'react';
 
 interface WorkspaceSettingsPageProps {
   params: {
@@ -13,7 +13,7 @@ const WorkspaceSettingsPage = async ({
   params,
 }: WorkspaceSettingsPageProps) => {
   const user = await getCurrent();
-  if (!user) redirect("/sign-in");
+  if (!user) redirect('/sign-in');
 
   const initialValues = await getWrokspace({ workspaceId: params.workspaceId });
 

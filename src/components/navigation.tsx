@@ -1,39 +1,39 @@
-"use client";
-import { cn } from "@/lib/utils";
-import { SettingsIcon, UsersIcon } from "lucide-react";
-import Link from "next/link";
+'use client';
+import { cn } from '@/lib/utils';
+import { SettingsIcon, UsersIcon } from 'lucide-react';
+import Link from 'next/link';
 import {
   GoCheckCircle,
   GoCheckCircleFill,
   GoHome,
   GoHomeFill,
-} from "react-icons/go";
+} from 'react-icons/go';
 
-import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
-import { usePathname } from "next/navigation";
+import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
+import { usePathname } from 'next/navigation';
 
 const routes = [
   {
-    label: "Home",
-    path: "",
+    label: 'Home',
+    path: '',
     icon: GoHome,
     avtiveIcon: GoHomeFill,
   },
   {
-    label: "My Tasks",
-    path: "/tasks",
+    label: 'My Tasks',
+    path: '/tasks',
     icon: GoCheckCircle,
     avtiveIcon: GoCheckCircleFill,
   },
   {
-    label: "Settings",
-    path: "/settings",
+    label: 'Settings',
+    path: '/settings',
     icon: SettingsIcon,
     avtiveIcon: SettingsIcon,
   },
   {
-    label: "Members",
-    path: "/members",
+    label: 'Members',
+    path: '/members',
     icon: UsersIcon,
     avtiveIcon: UsersIcon,
   },
@@ -54,9 +54,9 @@ const Navigation = () => {
             <Link href={fullHref}>
               <div
                 className={cn(
-                  "flex items-center gap-2.5 p-2.5 rounded-md font-medium hover:text-primary transition text-neutral-500",
+                  'flex items-center gap-2.5 p-2.5 rounded-md font-medium hover:text-primary transition text-neutral-500',
                   isActive &&
-                    "bg-white shadow-sm hover:opacity-100 text-primary",
+                    'bg-white shadow-sm hover:opacity-100 text-primary'
                 )}
               >
                 <Icon className="size-5 text-neutral-500" />

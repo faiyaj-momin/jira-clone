@@ -1,12 +1,12 @@
-"use client";
-import { useForm } from "react-hook-form";
-import { useRef } from "react";
+'use client';
+import { useForm } from 'react-hook-form';
+import { useRef } from 'react';
 
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { DottedSeparator } from "@/components/dotted-separator";
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { DottedSeparator } from '@/components/dotted-separator';
 import {
   Form,
   FormControl,
@@ -14,17 +14,17 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 
-import { createWorkspaceSchema } from "../schemas";
-import { useCreateWorkspace } from "../api/use-create-workspace";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import Image from "next/image";
-import { ImageIcon } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { cn } from "@/lib/utils";
+import { createWorkspaceSchema } from '../schemas';
+import { useCreateWorkspace } from '../api/use-create-workspace';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import Image from 'next/image';
+import { ImageIcon } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { cn } from '@/lib/utils';
 
 interface CreateWorkspaceFormProps {
   onCancel?: () => void;
@@ -38,37 +38,37 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
   const form = useForm<z.infer<typeof createWorkspaceSchema>>({
     resolver: zodResolver(createWorkspaceSchema),
     defaultValues: {
-      name: "",
+      name: '',
     },
   });
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      form.setValue("image", file);
+      form.setValue('image', file);
     }
   };
 
   const onSubmit = (data: z.infer<typeof createWorkspaceSchema>) => {
     const finalData = {
       ...data,
-      image: data.image instanceof File ? data.image : "",
+      image: data.image instanceof File ? data.image : '',
     };
     console.log(data);
     mutate(
       { form: finalData },
       {
         onSuccess: ({ data }) => {
-          if (data && typeof data === "object" && "$id" in data) {
+          if (data && typeof data === 'object' && '$id' in data) {
             form.reset();
-            window.localStorage.setItem("workspaceId", data.$id);
+            window.localStorage.setItem('workspaceId', data.$id);
             router.push(`/workspaces/${data.$id}`);
             // onCancel?.();
           } else {
-            console.error("Unexpected data format:", data);
+            console.error('Unexpected data format:', data);
           }
         },
-      },
+      }
     );
   };
 
@@ -146,7 +146,7 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
                             onClick={() => {
                               field.onChange(null);
                               if (inputRef.current) {
-                                inputRef.current.value = "";
+                                inputRef.current.value = '';
                               }
                             }}
                           >
@@ -178,7 +178,7 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
                 onClick={onCancel}
                 size="lg"
                 disabled={isPending}
-                className={cn(!onCancel && "invisible")}
+                className={cn(!onCancel && 'invisible')}
               >
                 Cancel
               </Button>

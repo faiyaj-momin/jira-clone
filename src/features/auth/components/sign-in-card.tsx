@@ -1,24 +1,24 @@
-"use client";
-import { FcGoogle } from "react-icons/fc";
-import { FaGithub } from "react-icons/fa";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+'use client';
+import { FcGoogle } from 'react-icons/fc';
+import { FaGithub } from 'react-icons/fa';
+import { z } from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from "@/components/ui/form";
-import { DottedSeparator } from "@/components/dotted-separator";
-import { Input } from "@/components/ui/input";
-import Link from "next/link";
-import { loginSchema } from "../schemas";
-import { useLogin } from "../api/use-login";
+} from '@/components/ui/form';
+import { DottedSeparator } from '@/components/dotted-separator';
+import { Input } from '@/components/ui/input';
+import Link from 'next/link';
+import { loginSchema } from '../schemas';
+import { useLogin } from '../api/use-login';
 
 export const SignInCard = () => {
   const { mutate, isPending } = useLogin();
@@ -26,8 +26,8 @@ export const SignInCard = () => {
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
   });
 

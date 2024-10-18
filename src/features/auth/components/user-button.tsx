@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import { Loader, LogOut } from "lucide-react";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Loader, LogOut } from 'lucide-react';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import {
   DropdownMenu,
   DropdownMenuItem,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { DottedSeparator } from "@/components/dotted-separator";
+} from '@/components/ui/dropdown-menu';
+import { DottedSeparator } from '@/components/dotted-separator';
 
-import { useLogout } from "../api/use-logout";
-import { useCurrent } from "../api/use-current";
+import { useLogout } from '../api/use-logout';
+import { useCurrent } from '../api/use-current';
 
 export const UserButton = () => {
   const { mutate: logout } = useLogout();
@@ -38,7 +38,7 @@ export const UserButton = () => {
 
   const avatarFallback = name
     ? name.charAt(0).toUpperCase()
-    : (email.charAt(0).toUpperCase() ?? "U");
+    : (email.charAt(0).toUpperCase() ?? 'U');
 
   return (
     <DropdownMenu>
@@ -66,7 +66,7 @@ export const UserButton = () => {
           </Avatar>
           <div className="flex flex-col items-center justify-center">
             <p className="text-sm font-medium text-neutral-900">
-              {name || "User"}
+              {name || 'User'}
             </p>
             <p className="text-xs text-neutral-500">{email}</p>
           </div>

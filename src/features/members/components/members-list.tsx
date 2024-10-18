@@ -1,31 +1,31 @@
-"use client";
+'use client';
 
-import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
+import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { ArrowLeftIcon, MoreVerticalIcon } from "lucide-react";
-import Link from "next/link";
-import { DottedSeparator } from "@/components/dotted-separator";
-import { useGetMembers } from "../api/use-get-members";
-import { Fragment } from "react";
-import { MemberAvatar } from "./member-avatar";
-import { Separator } from "@/components/ui/separator";
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { ArrowLeftIcon, MoreVerticalIcon } from 'lucide-react';
+import Link from 'next/link';
+import { DottedSeparator } from '@/components/dotted-separator';
+import { useGetMembers } from '../api/use-get-members';
+import { Fragment } from 'react';
+import { MemberAvatar } from './member-avatar';
+import { Separator } from '@/components/ui/separator';
 import {
   DropdownMenu,
   DropdownMenuItem,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { useDeleteMember } from "../api/use-delete-member";
-import { useUpdateMember } from "../api/use-update-member";
-import { MemberRole } from "../types";
-import { useConfirm } from "@/hooks/use-confirm";
+} from '@/components/ui/dropdown-menu';
+import { useDeleteMember } from '../api/use-delete-member';
+import { useUpdateMember } from '../api/use-update-member';
+import { MemberRole } from '../types';
+import { useConfirm } from '@/hooks/use-confirm';
 const MembersList = () => {
   const [ComfirmDialog, comfirm] = useConfirm(
-    "Remove Member",
-    "This member will be removed from the workspace",
-    "destructive"
+    'Remove Member',
+    'This member will be removed from the workspace',
+    'destructive'
   );
   const workspaceId = useWorkspaceId();
   const { data } = useGetMembers({ workspaceId });
@@ -91,12 +91,13 @@ const MembersList = () => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent side="bottom" align="end">
                   <DropdownMenuItem
-                    
                     className="font-medium"
                     onSelect={() =>
                       handleUpdateMember(member.$id, MemberRole.ADMIN)
                     }
-                    disabled={data.role === MemberRole.MEMBER || isUpdatingMember}
+                    disabled={
+                      data.role === MemberRole.MEMBER || isUpdatingMember
+                    }
                   >
                     Set as Administrator
                   </DropdownMenuItem>
@@ -105,14 +106,18 @@ const MembersList = () => {
                     onSelect={() =>
                       handleUpdateMember(member.$id, MemberRole.MEMBER)
                     }
-                    disabled={data.role === MemberRole.MEMBER || isUpdatingMember}
+                    disabled={
+                      data.role === MemberRole.MEMBER || isUpdatingMember
+                    }
                   >
                     Set as Member
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     className="font-medium text-amber-700"
                     onSelect={() => handleDeleteMember(member.$id)}
-                    disabled={data.role === MemberRole.MEMBER || isDeletingMember}
+                    disabled={
+                      data.role === MemberRole.MEMBER || isDeletingMember
+                    }
                   >
                     Remove {member.name}
                   </DropdownMenuItem>

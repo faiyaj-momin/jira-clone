@@ -1,8 +1,8 @@
-import "server-only";
+import 'server-only';
 
-import { Client, Account, Databases, Users } from "node-appwrite";
-import { cookies } from "next/headers";
-import { AUTH_COOKIE } from "@/features/auth/constants";
+import { Client, Account, Databases, Users } from 'node-appwrite';
+import { cookies } from 'next/headers';
+import { AUTH_COOKIE } from '@/features/auth/constants';
 
 export async function createSessionClient() {
   const client = new Client()
@@ -12,7 +12,7 @@ export async function createSessionClient() {
   const session = await cookies().get(AUTH_COOKIE);
 
   if (!session || !session.value) {
-    throw new Error("Unauthorized");
+    throw new Error('Unauthorized');
   }
 
   client.setSession(session.value);
@@ -39,6 +39,6 @@ export async function createAdminClient() {
     },
     get users() {
       return new Users(client);
-    }
+    },
   };
 }

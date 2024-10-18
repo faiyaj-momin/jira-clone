@@ -1,7 +1,7 @@
-import { Query, type Databases } from "node-appwrite";
+import { Query, type Databases } from 'node-appwrite';
 
-import { DATABASE_ID, MEMBERS_ID } from "@/lib/config";
-import { Member } from "./types";
+import { DATABASE_ID, MEMBERS_ID } from '@/lib/config';
+import { Member } from './types';
 
 interface GetMemberProps {
   userId: string;
@@ -23,10 +23,11 @@ export const getMember = async ({
   databases,
 }: GetMemberProps): Promise<Member | undefined> => {
   try {
-    const members = await databases.listDocuments<Member>(DATABASE_ID, MEMBERS_ID, [
-      Query.equal("userId", userId),
-      Query.equal("workspaceId", workspaceId),
-    ]);
+    const members = await databases.listDocuments<Member>(
+      DATABASE_ID,
+      MEMBERS_ID,
+      [Query.equal('userId', userId), Query.equal('workspaceId', workspaceId)]
+    );
 
     if (members.total === 0) {
       return undefined;
@@ -34,7 +35,7 @@ export const getMember = async ({
 
     return members.documents[0];
   } catch (error: unknown) {
-    console.error("Error updating workspace:", error);
+    console.error('Error updating workspace:', error);
 
     return undefined;
   }

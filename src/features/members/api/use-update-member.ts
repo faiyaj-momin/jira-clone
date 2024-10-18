@@ -1,35 +1,34 @@
-import { toast } from "sonner";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { InferResponseType, InferRequestType } from "hono";
+import { toast } from 'sonner';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { InferResponseType, InferRequestType } from 'hono';
 
-import { client } from "@/lib/rpc";
+import { client } from '@/lib/rpc';
 
 type ResponseType = InferResponseType<
-  (typeof client.api.members)[":memberId"]["$patch"],
+  (typeof client.api.members)[':memberId']['$patch'],
   200
 >;
 type RequestType = InferRequestType<
-  (typeof client.api.members)[":memberId"]["$patch"]
+  (typeof client.api.members)[':memberId']['$patch']
 >;
 
 export const useUpdateMember = () => {
   const queryClient = useQueryClient();
   const mutation = useMutation<ResponseType, Error, RequestType>({
     mutationFn: async ({ param, json }) => {
-      const response = await client.api.members[":memberId"]["$patch"]({
+      const response = await client.api.members[':memberId']['$patch']({
         param,
         json,
       });
 
-
       console.log(response);
       if (!response.ok) {
         if (response.status === 401) {
-          throw new Error("unauthorized");
+          throw new Error('unauthorized');
         } else if (response.status === 400) {
-          throw new Error("cannot downgrade the only member");
+          throw new Error('cannot downgrade the only member');
         } else {
-          throw new Error("Failed to update member");
+          throw new Error('Failed to update member');
         }
       }
 
@@ -37,10 +36,10 @@ export const useUpdateMember = () => {
     },
     onSuccess: ({ message }) => {
       toast.success(message);
-      queryClient.invalidateQueries({ queryKey: ["members"] });
+      queryClient.invalidateQueries({ queryKey: ['members'] });
     },
     onError: ({ message }) => {
-      toast.error(message || "Failed to update member");
+      toast.error(message || 'Failed to update member');
     },
   });
   return mutation;
